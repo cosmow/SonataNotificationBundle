@@ -14,15 +14,24 @@ declare(strict_types=1);
 namespace Sonata\NotificationBundle\Command;
 
 use Sonata\NotificationBundle\Backend\QueueDispatcherInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * @final since sonata-project/notification-bundle 3.13
  */
-class ListQueuesCommand extends ContainerAwareCommand
+class ListQueuesCommand extends Command
 {
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        parent::__construct();
+    }
+
     public function configure()
     {
         $this->setName('sonata:notification:list-queues');
@@ -31,7 +40,7 @@ class ListQueuesCommand extends ContainerAwareCommand
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $backend = $this->getContainer()->get('sonata.notification.backend');
+        $backend = $this->container->get('sonata.notification.backend');
 
         if (!$backend instanceof QueueDispatcherInterface) {
             $output->writeln(
