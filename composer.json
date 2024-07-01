@@ -1,96 +1,44 @@
 {
     "name": "cosmow/notification-bundle",
-    "description": "Symfony SonataNotificationBundle",
-    "license": "MIT",
+    "description": "Cosmomedia's Notification Bundle",
     "type": "symfony-bundle",
-    "abandoned": true,
-    "keywords": [
-        "page",
-        "sonata",
-        "cms"
-    ],
+    "license": "MIT",
     "authors": [
         {
-            "name": "Thomas Rabaix",
-            "email": "thomas.rabaix@sonata-project.org",
-            "homepage": "https://sonata-project.org"
-        },
-        {
-            "name": "Sonata Community",
-            "homepage": "https://github.com/sonata-project/SonataNotificationBundle/contributors"
+            "name": "Milayton Pereira",
+            "email": "milayton.pereira@cosmomedia.es"
         }
     ],
-    "homepage": "https://docs.sonata-project.org/projects/SonataNotificationBundle",
     "require": {
         "php": "^8.0",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/persistence": "^2.0",
-        "laminas/laminas-diagnostics": "^1.6",
-        "sonata-project/datagrid-bundle": "^3.0",
         "sonata-project/doctrine-extensions": "^1.10.1",
-        "sonata-project/form-extensions": "^1.4 || ^0.1",
         "symfony/config": "^5.2",
         "symfony/console": "^5.2",
         "symfony/dependency-injection": "^5.2",
-        "symfony/doctrine-bridge": "^5.2",
         "symfony/event-dispatcher": "^5.2",
-        "symfony/event-dispatcher-contracts": "^1.1",
         "symfony/form": "^5.2",
         "symfony/http-foundation": "^5.2",
         "symfony/http-kernel": "^5.2",
         "symfony/security-core": "^5.2"
     },
     "require-dev": {
-        "enqueue/amqp-lib": "^0.8",
-        "friendsofsymfony/rest-bundle": "^3.0",
-        "guzzlehttp/guzzle": "^6.0",
-        "jms/serializer-bundle": "^3.0",
-        "liip/monitor-bundle": "^2.6",
-        "matthiasnoback/symfony-config-test": "^4.2",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-        "nelmio/api-doc-bundle": "^3.6",
-        "phpstan/phpstan": "^0.12.83",
         "phpunit/phpunit": "^9.5",
-        "sonata-project/doctrine-orm-admin-bundle": "^3.19",
-        "swiftmailer/swiftmailer": "^6.0",
-        "symfony/browser-kit": "^5.2",
-        "symfony/phpunit-bridge": "^5.2",
-        "symfony/swiftmailer-bundle": "^3.4",
-        "symfony/templating": "^5.2",
-        "symfony/yaml": "^5.2",
-        "vimeo/psalm": "^4.7"
-    },
-    "conflict": {
-        "friendsofsymfony/rest-bundle": "<3.0",
-        "jms/serializer": "<0.13",
-        "liip/monitor-bundle": "<2.6",
-        "nelmio/api-doc-bundle": "<3.6",
-        "sonata-project/admin-bundle": "<3.1",
-        "sonata-project/core-bundle": "<3.20",
-        "sonata-project/doctrine-orm-admin-bundle": "<3.0"
-    },
-    "suggest": {
-        "friendsofsymfony/rest-bundle": "If you want to expose a ReST API.",
-        "guzzlehttp/guzzle": "If you want to get a status report when using the rabbitMQ backend.",
-        "liip/monitor-bundle": "Integrates the LiipMonitor library into Symfony",
-        "nelmio/api-doc-bundle": "If you want to provide OAS documentation for the ReST API.",
-        "queue-interop/amqp-interop": "Install any amqp-interop compatible transport if you want use RabbitMQ. For example enqueue/amqp-lib:^0.8",
-        "sonata-project/admin-bundle": "To be able to use MessageAdmin.",
-        "sonata-project/doctrine-orm-admin-bundle": "If you want to persist entities"
+        "symfony/phpunit-bridge": "^5.2"
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\NotificationBundle\\": "src/"
+            "Cosmow\\NotificationBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sonata\\NotificationBundle\\Tests\\": "tests/"
+            "Cosmow\\NotificationBundle\\Tests\\": "tests/"
         }
     },
-    "config": {
-        "sort-packages": true
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "3.x-dev"
