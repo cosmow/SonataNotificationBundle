@@ -19,17 +19,26 @@ use Sonata\NotificationBundle\Consumer\ConsumerInterface;
 use Sonata\NotificationBundle\Event\IterateEvent;
 use Sonata\NotificationBundle\Exception\HandlingException;
 use Sonata\NotificationBundle\Model\MessageInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * @final since sonata-project/notification-bundle 3.13
  */
-class ConsumerHandlerCommand extends ContainerAwareCommand
+class ConsumerHandlerCommand extends Command
 {
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        parent::__construct();
+    }
+
     public function configure()
     {
         $this->setName('sonata:notification:start');
@@ -185,7 +194,7 @@ class ConsumerHandlerCommand extends ContainerAwareCommand
      */
     private function getBackend($type = null)
     {
-        $backend = $this->getContainer()->get('sonata.notification.backend');
+        $backend = $this->container->get('sonata.notification.backend');
 
         if ($type && !\array_key_exists($type, $this->getNotificationDispatcher()->getListeners())) {
             throw new \RuntimeException(sprintf('The type `%s` does not exist, available types: %s', $type, implode(', ', array_keys($this->getNotificationDispatcher()->getListeners()))));
@@ -210,7 +219,7 @@ class ConsumerHandlerCommand extends ContainerAwareCommand
      */
     private function getNotificationDispatcher()
     {
-        return $this->getContainer()->get('sonata.notification.dispatcher');
+        return $this->container->get('sonata.notification.dispatcher');
     }
 
     /**
@@ -218,6 +227,6 @@ class ConsumerHandlerCommand extends ContainerAwareCommand
      */
     private function getEventDispatcher()
     {
-        return $this->getContainer()->get('event_dispatcher');
+        return $this->container->get('event_dispatcher');
     }
 }
