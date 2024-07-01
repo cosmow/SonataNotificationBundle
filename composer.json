@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "doctrine/doctrine-bundle": "^3.0",
+        "doctrine/doctrine-bundle": "^3.0 || ^2.0",
         "doctrine/persistence": "^2.0 || ^3.3.3",
         "sonata-project/doctrine-extensions": "^1.10.1",
         "symfony/config": "^6.0",
@@ -40,8 +40,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
+        "branch-alias": {}
     }
 }
