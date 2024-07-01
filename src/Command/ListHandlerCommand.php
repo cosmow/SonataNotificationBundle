@@ -16,12 +16,22 @@ namespace Sonata\NotificationBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * @final since sonata-project/notification-bundle 3.13
  */
-class ListHandlerCommand extends ContainerAwareCommand
+class ListHandlerCommand extends Command
 {
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        parent::__construct();
+    }
+
     public function configure()
     {
         $this->setName('sonata:notification:list-handler');
@@ -47,6 +57,6 @@ class ListHandlerCommand extends ContainerAwareCommand
      */
     private function getMetadata()
     {
-        return $this->getContainer()->get('sonata.notification.consumer.metadata')->getInformations();
+        return $this->container->get('sonata.notification.consumer.metadata')->getInformations();
     }
 }
